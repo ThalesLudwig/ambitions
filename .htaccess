@@ -1,0 +1,22 @@
+RewriteBase /
+Options +FollowSymLinks -MultiViews
+RewriteEngine On
+
+# block folder access
+Options -Indexes
+
+# redirect to www site
+RewriteCond %{HTTP_HOST} ^samaritan.com.br
+RewriteRule ^ http://www.samaritan.com.br%{REQUEST_URI} [L,R=301]
+
+# remove php extension
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteCond %{REQUEST_URI} !/$
+RewriteRule (.*) $1\.php [L]
+
+
+
+# remove folders from url
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /app/view/$1 [L]
