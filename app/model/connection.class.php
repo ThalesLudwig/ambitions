@@ -18,7 +18,7 @@ class Connection {
     private static $hostname = "172.17.0.2";
     private static $dataBaseName = "samaritan";
     private static $userName = "root";
-    private static $pwd = "th@les#91";
+    private static $pwd = "";
     private static $dataBaseType = "mysql";
 
     public static function connect() {
