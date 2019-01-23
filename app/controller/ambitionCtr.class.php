@@ -14,7 +14,7 @@ class AmbitionCtr {
 
     public function save($user, $title) {
         //returns 1 for success, 0 for failure
-        $query = $this->dao->insert("user, title, description, completed, start_date, end_date, priority", "'$user','$title','Description',false,now(),'0000-00-00',0");
+        $query = $this->dao->insert("owner, title, description, achieved, completed, start_date, end_date, priority", "$user,'$title','Description', 0, 0, now(),'0000-00-00', 1");
         return $query;
     }
 
@@ -45,13 +45,13 @@ class AmbitionCtr {
     }
 
     public function findAmbitions($user) {
-        $this->dao->find("*", "user='$user' ORDER BY start_date DESC");
+        $this->dao->find("*", "owner='$user' ORDER BY start_date DESC");
         $row = $this->dao->getRecordSet();
         $ambitions = array();
 
         for ($i = 0; $i < count($row); $i++) {
             $ambId = $row[$i]["id"];
-            $ambUser = $row[$i]["user"];
+            $ambUser = $row[$i]["owner"];
             $ambTitle = $row[$i]["title"];
             $ambDesc = $row[$i]["description"];
             $ambCompleted = $row[$i]["completed"];
@@ -72,13 +72,13 @@ class AmbitionCtr {
     }
     
     public function findAmbitionsByState($user, $completed) {
-        $this->dao->find("*", "user='$user' AND completed=".$completed);
+        $this->dao->find("*", "owner='$user' AND completed=".$completed);
         $row = $this->dao->getRecordSet();
         $ambitions = array();
 
         for ($i = 0; $i < count($row); $i++) {
             $ambId = $row[$i]["id"];
-            $ambUser = $row[$i]["user"];
+            $ambUser = $row[$i]["owner"];
             $ambTitle = $row[$i]["title"];
             $ambDesc = $row[$i]["description"];
             $ambCompleted = $row[$i]["completed"];
@@ -103,7 +103,7 @@ class AmbitionCtr {
         $row = $this->dao->getRecordSet();
         for ($i = 0; $i < count($row); $i++) {
             $ambId = $row[$i]["id"];
-            $ambUser = $row[$i]["user"];
+            $ambUser = $row[$i]["owner"];
             $ambTitle = $row[$i]["title"];
             $ambDesc = $row[$i]["description"];
             $ambCompleted = $row[$i]["completed"];
@@ -163,7 +163,7 @@ class AmbitionCtr {
     }
 
     public function deleteAllbyUser($user) {
-        $this->dao->find("*", "user='$user'");
+        $this->dao->find("*", "owner='$user'");
         $row = $this->dao->getRecordSet();
         $stepCtr = new StepCtr();
         $commentCtr = new CommentCtr();
@@ -190,39 +190,40 @@ class AmbitionCtr {
             . '<h3>Hey, you!</h3>'
             . '<br>'
             . '<p>Your home page looks really empty. You can start creating Ambitions! Don\'t be shy. If you are out of ideas, try following some people, they have objectives too! You can search for people by clicking on the <font color="blue">magnifying glass</font> icon on the top of this page</p>'
-            . '<p>Also, remember to check your <a href="edit-profile" style="color: red">Edit Profile</a> page and upload a nice cover picture and a profile picture!</p>'            
+            . '<p>Also, remember to check your <a href="edit-profile.php" style="color: red">Edit Profile</a> page and upload a nice cover picture and a profile picture!</p>'            
             . '<br>'
             . '<h4>What do I do now?</h4>'
             . '<br>'
             . '<p>See the text box above? You can create Ambitions on it. Write your objectives, like "travel to London" or "finish the math homework".</p>'
             . '<p>After creating, click on the Ambition\'s name or on the magnifying glass icon to open the Ambition\'s panel. There you can add a cover image, description, steps for completion, and more!</p>'
-            . '<p>For more information, please visit the <a href="help" style="color: red">Contact and Help</a> page.</p>'
+            . '<p>For more information, please visit the <a href="help.php" style="color: red">Contact and Help</a> page.</p>'
             . '</div>';
         } else {
             echo '<div class="mdl-card mdl-shadow--2dp panel-first-time">'
             . '<h3>Ei, você!</h3>'
             . '<br>'
             . '<p>Sua página principal parece bem vazia. Você pode começar criando Ambições! Não seja tímido. Se estiver sem ideias, tente seguir algumas pessoas, elas também tem objetivos! Você pode pesquisar por pessoas clicando no <font color="blue">ícone da lupa</font> no topo desta página.</p>'
-            . '<p>Também, lembre-se de checar sua página de <a href="edit-profile" style="color: red">Editar Perfil</a> e coloque uma foto de capa legal e uma foto de perfil!</p>'
+            . '<p>Também, lembre-se de checar sua página de <a href="edit-profile.php" style="color: red">Editar Perfil</a> e coloque uma foto de capa legal e uma foto de perfil!</p>'
             . '<br>'
             . '<h4>O que eu faço agora?</h4>'
             . '<br>'
             . '<p>Está vendo essa caixa de texto acima? Você pode criar Ambições nela. Escreva seus objetivos, como "viajar para Londres" ou "terminar trabalho de matemática".</p>'
             . '<p>Após criar, clique no nome da sua Ambição ou no ícone da lupa para abrir o painel da Ambição. Nele você pode adicionar uma imagem de capa, descrição, etapas, e mais!</p>'
-            . '<p>Para saber mais, visite a página de <a href="help" style="color: red">Contato e Ajuda</a>.</p>'
+            . '<p>Para saber mais, visite a página de <a href="help.php" style="color: red">Contato e Ajuda</a>.</p>'
             . '</div>';
         }
     }
 
     public function checkIfEmptyHome($userId) {
         //FIND all ambitions WHERE userId is the active user
-        $this->dao->find("*", "user='$userId'");
+        $this->dao->find("*", "owner='$userId'");
         $row = $this->dao->getRecordSet();
         $ambitions = array();
-
+        
         for ($i = 0; $i < count($row); $i++) {
             $ambitions[$i] = $row[$i]["id"];
         }
+        
         if ($ambitions == null) {
             $this->printWelcomeCard();
         } else {

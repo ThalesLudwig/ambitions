@@ -15,10 +15,10 @@ class Connection {
      */
     
     private static $conn;
-    private static $hostname = "localhost";
-    private static $dataBaseName = "ambitions";
+    private static $hostname = "172.17.0.2";
+    private static $dataBaseName = "samaritan";
     private static $userName = "root";
-    private static $pwd = "";
+    private static $pwd = "th@les#91";
     private static $dataBaseType = "mysql";
 
     public static function connect() {

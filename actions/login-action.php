@@ -23,7 +23,7 @@ if (isset($_POST['btnLogin'])) {
         $_SESSION['password'] = $activeUser->getPassword();
         $_SESSION['email'] = $activeUser->getEmail();
         $_SESSION['pic_profile'] = $activeUser->getProfilePic();
-        $_SESSION['pic_cover'] = $activeUser->getCoverPic();
+        $_SESSION['pic_cover'] = $activeUser->getId().'.jpg';
         $_SESSION['private'] = $activeUser->getPrivate();
 
         //Set cookie to last 1 year

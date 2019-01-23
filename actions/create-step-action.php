@@ -9,4 +9,4 @@ $title = $_GET['title'];
 $titleFormated = addslashes($title);
 
 $stepCtr = new StepCtr();
-$stepCtr->save($ambId, $titleFormated);
+$stepCtr->save($ambId, $titleFormated, 0);

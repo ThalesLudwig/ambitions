@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS `ambition` (
   `title` varchar(255) NOT NULL,
   `description` varchar(6000) NOT NULL,
   `achieved` tinyint(1) NOT NULL,
+  `completed` int(255) NULL,
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
   `priority` int(255) NOT NULL,
@@ -103,6 +104,7 @@ CREATE TABLE IF NOT EXISTS `step` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `ambition` int(255) NOT NULL,
   `title` varchar(500) NOT NULL,
+  `completed` int(255) NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 

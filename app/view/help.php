@@ -23,10 +23,7 @@
             
             <!-- if the user is NOT Brazilian -->            
             <?php if ($_SESSION['location'] != 'BR') { ?>                
-            <a href="../../index.php" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">                  
-                <i class="material-icons">keyboard_arrow_left</i>                
-            </a>                
-            &nbsp;                
+              
             <h2 style="display: inline">Frequently Asked Questions</h2>                
             <hr>                
             <h4 class="faq-question">What is Ambitions?</h4>                
@@ -88,10 +85,7 @@
             <?php
             } else { 
             ?>                
-            <a href="../../index.php" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">                  
-                <i class="material-icons">keyboard_arrow_left</i>                
-            </a>                
-            &nbsp;                
+            
             <h2 style="display: inline">AJUDA</h2>                
             <hr>                
             <h4 class="faq-question">O que é o Ambitions?</h4>                

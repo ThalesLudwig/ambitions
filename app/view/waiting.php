@@ -31,7 +31,7 @@
                 <div class="mdl-layout__header-row">
                     <div class="mdl-layout-spacer"></div>
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
-                        <a class="link-custom" style="color: white" href="edit-profile"><?php echo $_SESSION['name']; ?> &nbsp;&nbsp;&nbsp;</a> <!-- username -->
+                        <a class="link-custom" style="color: white" href="edit-profile.php"><?php echo $_SESSION['name']; ?> &nbsp;&nbsp;&nbsp;</a> <!-- username -->
                         <i class="material-icons notification-button"><?php echo $notificationsPanel->checkButtonToPrint()?></i> <!-- notifications icon -->
                         <label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp">
                             <i class="material-icons">search</i>
@@ -52,7 +52,6 @@
                     <a class="mdl-navigation__link link-custom" href="completed.php"><i class="material-icons">done_all</i>&nbsp;&nbsp;<?php echo $grammarArrayNavbar[3] ?></a>
                     <a class="mdl-navigation__link link-custom" href="waiting.php"><i class="material-icons">timer_off</i>&nbsp;&nbsp;<?php echo $grammarArrayNavbar[4] ?></a>
                     <hr>
-                    <a class="mdl-navigation__link link-custom" href="edit-profile.php"><i class="material-icons">account_circle</i>&nbsp;&nbsp;<?php echo $grammarArrayNavbar[8] ?></a>
                     <a class="mdl-navigation__link link-custom" href="connections.php"><i class="material-icons">supervisor_account</i>&nbsp;&nbsp;<?php echo $grammarArrayNavbar[9] ?></a>
                     <hr>
                     <a class="mdl-navigation__link link-custom" href="settings.php"><i class="material-icons">settings</i>&nbsp;&nbsp;<?php echo $grammarArrayNavbar[5] ?></a>
